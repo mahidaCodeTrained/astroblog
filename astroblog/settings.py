@@ -25,7 +25,8 @@ SECRET_KEY = 'django-insecure-x10co)h*#p8x2x6_txvv_$9q^1yggrj!5%$wpjia+ix%kl7kbr
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ['8000-mahidacodetra-astroblog-b7anplv6oaj.ws.codeinstitute-ide.net','.herokuapp.com'
+ALLOWED_HOSTS = ['8000-mahidacodetra-astroblog-b7anplv6oaj.ws.codeinstitute-ide.net',
+'astroblog-5d7f9fc3c6e0.herokuapp.com/'
 ]
 
 
