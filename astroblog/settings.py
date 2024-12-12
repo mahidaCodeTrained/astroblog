@@ -145,10 +145,3 @@ STATIC_URL = 'static/'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': 'dtmi6blzj',
-    'API_KEY': '659564631133588',
-    'API_SECRET': 'a4SwxN_QF-ZDAnNBfT18rd9LZds'
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
