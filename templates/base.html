@@ -12,11 +12,34 @@
     <style>
         .navbar {
             justify-content: center;
-            background-color: darkgray; 
+            background-color: black; 
         }
 
         .navbar-brand, .navbar-nav {
             text-align: center;
+        }
+
+        .container-fluid {
+            background-color: black;
+        }
+
+        /* Parallax Section */
+        .hero-image {
+            background-image: url('https://jooinn.com/images/shooting-star-4.jpg'); /* Replace with your image URL */
+            background-attachment: fixed;
+            background-size: cover;
+            background-position: center;
+            height: 900px; /* Adjust height as needed */
+        }
+
+        .hero-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            color: white;
+            font-size: 2rem;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
         }
     </style>
 </head>
@@ -33,13 +56,21 @@
                 <ul class="navbar-nav mx-auto">
                     <li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
-                    <li class="nav-item"><a class="nav-link" href="/observatory">Observatory</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/observatory">Create Post</a></li>
+                    <li class="nav-item"><a class="nav-link" href="/observatory">Contact</a></li>
                 </ul>
             </div>
             <div class="d-none d-md-block">
                 <a href="/login" class="btn btn--cta btn--red">Sign In / Sign Up</a>
             </div>
         </nav>
+    </div>
+
+    <!-- Parallax Hero Section -->
+    <div class="hero-image">
+        <div class="hero-text">
+            <h1>Explore the Universe with Astroblog</h1>
+        </div>
     </div>
 
     <!-- Content Block (For Page Specific Content) -->
