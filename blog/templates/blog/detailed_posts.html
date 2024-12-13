@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+
+<div class="masthead position-relative">
+    <div class="position-absolute top-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
+    <img src="{% static 'images/starshoot.jpg' %}" class="w-100 h-100 object-fit-cover" alt="placeholder" style="z-index: 0; position: absolute;">
+    <div class="container text-center text-light position-relative" style="z-index: 2; padding: 100px 20px;">
+        <h1 class="post-title display-4">{{ post.title }}</h1>
+        <p class="post-subtitle lead">{{ post.author }} | {{ post.created_on }}</p>
+    </div>
+</div>
+
+<div class="container mt-5">
+    <div class="row">
+        <div class="col-lg-8 offset-lg-2">
+            <div class="card mb-4 mt-3">
+                <div class="card-body">
+                    <!-- The post content goes inside the card-text. -->
+                    <p class="card-text">
+                        {{ post.content | safe }}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
