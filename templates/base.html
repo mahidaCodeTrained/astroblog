@@ -1,3 +1,5 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en-us">
 
@@ -5,43 +7,13 @@
     <meta charset="utf-8">
     <title>Astroblog | Explore the Universe</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Bootstrap CDN link -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" integrity="sha384-gfdkjb5BdAXd+lj+gudLWI+BXq4IuLW5IT+brZEZsLFm++aCMlF1V92rMkPaX4PP" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Roboto:400,700" rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/style.css" type="text/css" />
-    <style>
-        .navbar {
-            justify-content: center;
-            background-color: black; 
-        }
-
-        .navbar-brand, .navbar-nav {
-            text-align: center;
-        }
-
-        .container-fluid {
-            background-color: black;
-        }
-
-        /* Parallax Section */
-        .hero-image {
-            background-image: url('https://jooinn.com/images/shooting-star-4.jpg'); /* Replace with your image URL */
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-            height: 900px; /* Adjust height as needed */
-        }
-
-        .hero-text {
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            color: white;
-            font-size: 2rem;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-        }
-    </style>
+    <!-- Custom CSS from style.css file -->
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+   
 </head>
 
 <body>

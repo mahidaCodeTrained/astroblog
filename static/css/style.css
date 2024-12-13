@@ -1,0 +1,41 @@
+.navbar {
+    justify-content: center;
+    background-color: black; 
+}
+
+.navbar-brand, .navbar-nav {
+    text-align: center;
+}
+
+.container-fluid {
+    background-color: black;
+}
+
+/* Parallax Section */
+.hero-image {
+    background-image: url('https://jooinn.com/images/shooting-star-4.jpg'); /* Replace with your image URL */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    height: 750px; /* Adjust height as needed */
+}
+
+.hero-text {
+    position: absolute;
+    top: 40%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: white;
+    font-size: 2rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+body {
+    background: linear-gradient(to bottom, #333333, #ffffff); /* Dark grey to white gradient */
+    color: #333; /* Optional: Set the text color for better contrast on the background */
+}
+
+
+.card-body {
+    background-color: lightgrey;
+}
