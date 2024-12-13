@@ -8,13 +8,16 @@
         <div class="row">
             {% for post in posts %}
                 <div class="col-md-4 mb-4">
-                    <div class="card">
-                        <div class="card-body">
-                            <h5 class="card-title">{{ post.title }}</h5>
-                            <p class="card-text"><strong>By:</strong> {{ post.author.username }} | <strong>Posted on:</strong> {{ post.date_posted }}</p>
-                            <p class="card-text">{{ post.content|truncatewords:20 }}</p> <!-- Truncate the content for preview -->
+                    <!-- Wrap the card in an anchor tag -->
+                    <a href="{}" class="text-decoration-none">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ post.title }}</h5>
+                                <p class="card-text"><strong>By:</strong> {{ post.author.username }} | <strong>Posted on:</strong> {{ post.date_posted }}</p>
+                                <p class="card-text">{{ post.content|truncatewords:20 }}</p> <!-- Truncate the content for preview -->
+                            </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             {% empty %}
                 <div class="col-12">
