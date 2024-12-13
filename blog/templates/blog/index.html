@@ -1,43 +1,51 @@
 {% extends 'base.html' %}
 
 {% block content %}
-    <h1 class="text-center my-4">Welcome to AstroBlog</h1>
-    <hr>
+<h1 class="text-center my-4">Welcome to AstroBlog</h1>
+<hr>
 
-    <div class="container" id="content">
-        <div class="row">
-            {% for post in page_obj %}
-                <div class="col-md-4 mb-4">
-                    <a href="#" class="text-decoration-none">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5 class="card-title">{{ post.title }}</h5>
-                                <p class="card-text"><strong>By:</strong> {{ post.author.username }} | <strong>Posted on:</strong> {{ post.date_posted }}</p>
-                                <p class="card-text">{{ post.content|truncatewords:20|safe }}</p>
-                            </div>
-                        </div>
-                    </a>
+<div class="container" id="content">
+    <div class="row">
+        {% for post in page_obj %}
+        <div class="col-md-4 mb-4">
+            <a href="#" class="text-decoration-none post-link">
+                <div class="card h-100">
+                    <div class="card-body">
+                        <h3 class="card-title">{{ post.title }}</h3>
+                        <p class="card-text">{{ post.excerpt }}</p>
+                        <p class="card-text"><strong>By:</strong> {{ post.author.username }} | <strong>Posted
+                                on:</strong> {{ post.date_posted }}</p>
+                        <p class="card-text">{{ post.content|truncatewords:20|safe }}</p>
+                    </div>
                 </div>
-            {% empty %}
-                <div class="col-12">
-                    <p class="text-center">No posts yet. Check back soon!</p>
-                </div>
-            {% endfor %}
+            </a>
         </div>
-
-        <!-- Pagination controls -->
+        {% empty %}
+        <div class="col-12">
+            <p class="text-center">No posts yet. Check back soon!</p>
+        </div>
+        {% endfor %}
     </div>
-    {% if is_paginated %}
-    <nav aria-label="Page navigation">
-        <ul class="pagination justify-content-center">
-            {% if page_obj.has_next %}
-            <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
-            {% endif %}
-        </ul>
-    </nav>
-    {% endif %}
+
+    <!-- Pagination controls -->
+    <!-- This code was taken from Code Institute: 'I Think Therefore I Blog to help fix custom pagination previously in this template' -->
 </div>
-        
+{% if is_paginated %}
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        {% if page_obj.has_previous %}
+        <li>
+            <a href="?page={{ page_obj.previous_page_number }}" class="page-link">&laquo; PREV</a>
+        </li>
+        {% endif %}
+        {% if page_obj.has_next %}
+        <li><a href="?page={{ page_obj.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>
+{% endif %}
+</div>
+
 {% endblock %}
 
 
