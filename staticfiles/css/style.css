@@ -39,3 +39,7 @@ body {
 .card-body {
     background-color: lightgrey;
 }
+
+.masthead-image img {
+    width: 100%;
+}
