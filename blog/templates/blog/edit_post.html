@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container mt-5">
+    <!-- Center the content with Bootstrap grid -->
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card p-4 shadow-sm">
+                <h2 class="text-center mb-4">Edit Post</h2>
+                
+                <!-- Form to Edit Post -->
+                <form method="POST">
+                    {% csrf_token %}
+                    <div class="mb-3">
+                        <!-- Render form fields using crispy -->
+                        {{ form|crispy }}
+                    </div>
+
+                    <!-- Submit Button -->
+                    <button type="submit" class="btn btn-primary w-100">Update Post</button>
+                </form>
+
+                <!-- Cancel Button -->
+                <a href="{% url 'detailed_posts' post.slug %}" class="btn btn-secondary w-100 mt-3">Cancel</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
