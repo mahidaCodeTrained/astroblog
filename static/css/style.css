@@ -12,13 +12,18 @@
 }
 
 /* Parallax Section */
+
 .hero-image {
-    background-image: url('https://jooinn.com/images/shooting-star-4.jpg'); /* Replace with your image URL */
+    background-image: url('/static/images/nightsky.jpg'); /* Replace with your image URL */
     background-attachment: fixed;
     background-size: cover;
-    background-position: center;
+    background-position: bottom;
     height: 750px; /* Adjust height as needed */
+    position: relative;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.7); /* Shadow below the hero section */
+    overflow: hidden;
 }
+
 
 .hero-text {
     position: absolute;
@@ -28,11 +33,11 @@
     color: white;
     font-size: 2rem;
     text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    
 }
 
 body {
-    background: linear-gradient(to bottom, #333333, #ffffff); /* Dark grey to white gradient */
-    color: #333; /* Optional: Set the text color for better contrast on the background */
+    background: linear-gradient(to bottom, black, #d3d3d3); /* Gradient from black to light grey */
 }
 
 
@@ -42,4 +47,17 @@ body {
 
 .masthead-image img {
     width: 100%;
+}
+
+h1 {
+    color: white;
+    
+}
+
+.my-4 {
+    color: white;
+}
+
+.underliner {
+   text-decoration: underline;
 }
