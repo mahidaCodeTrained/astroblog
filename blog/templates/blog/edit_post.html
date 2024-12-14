@@ -1,14 +1,17 @@
 {% extends 'base.html' %}
 {% load crispy_forms_tags %}
 
+{% block hero %}
+{% endblock %}
+
 {% block content %}
 <div class="container mt-5">
     <!-- Center the content with Bootstrap grid -->
     <div class="row justify-content-center">
-        <div class="col-md-6">
+        <div class="col-md-8 col-12">
             <div class="card p-4 shadow-sm">
                 <h2 class="text-center mb-4">Edit Post</h2>
-                
+
                 <!-- Form to Edit Post -->
                 <form method="POST">
                     {% csrf_token %}
@@ -28,4 +31,31 @@
     </div>
 </div>
 {% endblock %}
+
+{% block extras %}
+<!-- Include Summernote CSS -->
+<link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+
+
+
+<!-- Include jQuery and Summernote JS -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+<script>
+    $(document).ready(function() {
+        // Using JQuery in this html template to make sure that the editor functions well on all device sizes.
+        // Initialize Summernote for the content field (using the form's content field)
+        $('#id_content').summernote({
+            height: 300,  // Set a specific height for the editor
+            minHeight: 150,  // Minimum height of the editor
+            maxHeight: 500,  // Maximum height of the editor
+            focus: true,  // Focus on editor when opened
+        });
+    });
+</script>
+{% endblock %}
+
+
+
 
