@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% load i18n %}
+{% load account socialaccount %}
+
+{% block head_title %}{% trans "Sign In" %}{% endblock %}
+
+{% block hero %}
+<!-- Empty block to remove hero section -->
+{% endblock %}
+
+{% block content %}
+<div class="container d-flex flex-column min-vh-100">
+    <!-- Card container to center it vertically -->
+    <div class="d-flex justify-content-center align-items-center flex-grow-1">
+        <div class="card shadow-lg p-4" style="max-width: 500px; width: 100%; border-radius: 10px;">
+            <h3 class="text-center mb-4">{% trans "Sign In" %}</h3>
+
+            <p class="text-center">
+                {% blocktrans %}Welcome back to Astroblog. To leave a comment or like a post, please log in. If
+                you have not created an account yet, then <a class="link" href="{{ signup_url }}">sign up</a>
+                first.{% endblocktrans %}
+            </p>
+
+            <form class="login" method="POST" action="{% url 'account_login' %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                {% if redirect_field_value %}
+                <input type="hidden" name="{{ redirect_field_name }}" value="{{ redirect_field_value }}" />
+                {% endif %}
+                <button class="btn btn-primary btn-block mt-3" type="submit">{% trans "Sign In" %}</button>
+            </form>
+        </div>
+    </div>
+</div>
+{% endblock %}

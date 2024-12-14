@@ -71,25 +71,21 @@
           </div>
       </nav>
   </div>
-  
-  
-  
-  
-
     <!-- Parallax Hero Section -->
-    <div class="hero-image">
-      <div class="hero-text">
-          <h1>Explore the Universe with Astroblog</h1>
-          <p class="hero-subtext">bringing the constellations closer to you.</p>
-      </div>
-  </div>
+    {% block hero %}
+<div class="hero-image">
+    <div class="hero-text">
+        <h1>Explore the Universe with Astroblog</h1>
+        <p class="hero-subtext">bringing the constellations closer to you.</p>
+    </div>
+</div>
+{% endblock %}
 
     <!-- Content Block (For Page Specific Content) -->
    
     {% block content %}
     {% endblock %}
     
-
     <!-- Footer Section added after the jinga block content and endblock so it will extend to other templates that extend from base.html -->
     <footer class="bg-dark text-light text-center py-3">
         <div class="container">
@@ -110,8 +106,6 @@
           <p class="mb-0">&copy; 2024 Astroblog. All rights reserved.</p>
         </div>
       </footer>
-
-
 
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.8/dist/umd/popper.min.js" integrity="sha384-0rCFfLLr9u2KHLmQL8TqfYgykuDo4RZ9ppH6hS5KbRZbVz1SY7Q44aHfY9LRyUws" crossorigin="anonymous"></script>

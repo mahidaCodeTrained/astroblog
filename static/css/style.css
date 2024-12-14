@@ -11,6 +11,9 @@
     background-color: black;
 }
 
+.container {
+    flex: 1;
+}
 /* Parallax Section */
 
 .hero-image {
@@ -49,6 +52,9 @@
 
 body {
     background: linear-gradient(to bottom, black, #d3d3d3); /* Gradient from black to light grey */
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 
 
@@ -72,3 +78,4 @@ h1 {
 .underliner {
    text-decoration: underline;
 }
+
