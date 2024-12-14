@@ -41,3 +41,15 @@ class Comment(models.Model):
     def __str__(self):
         return f"Comment {self.body} by {self.author}"
 
+
+class PostSave(models.Model):
+    user = models.ForeignKey(User, on_delete=models.CASCADE, related_name="saved_posts")
+    post = models.ForeignKey(PostBlog, on_delete=models.CASCADE, related_name="saves")
+    saved_on = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        unique_together = ('user', 'post')  # Prevent duplicate saves for the same post by a user.
+
+    def __str__(self):
+        return f"{self.user.username} saved {self.post.title}"
+

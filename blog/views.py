@@ -1,14 +1,20 @@
-from django.shortcuts import render, get_object_or_404, reverse
+from django.shortcuts import render, get_object_or_404, reverse, redirect
 from django.views import generic
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 from django.http import HttpResponseRedirect
-from .models import PostBlog, Comment
-from .forms import Commenting
+from .models import PostBlog, Comment, PostSave
+from .forms import Commenting, PostForm
 
 class FetchBlog(generic.ListView):
     model = PostBlog
     template_name = "blog/index.html"
-    paginate_by = 6  # 6 posts per page
+    paginate_by = 6
+    
+    def get_queryset(self):
+        # Filter to show only published posts
+        return PostBlog.objects.filter(status=1)  # Show only published posts
+
 
 
 def detailed_posts(request, slug):
@@ -92,3 +98,63 @@ def deletion(request, slug, comment_id):
         messages.add_message(request, messages.ERROR, 'You can only delete your own comments!')
 
     return HttpResponseRedirect(reverse('detailed_posts', args=[slug]))
+
+@login_required
+def create_post(request):
+    """
+    View to create a new post.
+    """
+    if request.method == 'POST':
+        form = PostForm(request.POST)
+        if form.is_valid():
+            post = form.save(commit=False)
+            post.author = request.user  # Associate the post with the logged-in user
+
+            # Set default status to 'Published' or set a custom logic
+            post.status = 1  # Assuming '1' means published. Change as needed if it's another value for 'published'.
+            
+            post.save()
+            messages.success(request, 'Your post has been created successfully!')
+            return redirect('blog-home')  # Redirect to the blog home page or another page
+        else:
+            messages.error(request, 'There was an error creating your post.')
+    else:
+        form = PostForm()
+
+    return render(request, 'blog/create_post.html', {'form': form})
+
+
+
+
+
+@login_required
+def save_post(request, post_id):
+    """
+    View to save a post.
+    Redirects the user to the 'create_post' page after saving the post.
+    """
+    post = get_object_or_404(PostBlog, id=post_id)
+    saved_post, created = PostSave.objects.get_or_create(user=request.user, post=post)
+    
+    if created:
+        messages.success(request, 'Post saved successfully!')
+    else:
+        messages.info(request, 'You have already saved this post.')
+    
+    return HttpResponseRedirect(reverse('create_post'))
+
+
+@login_required
+def unsave_post(request, post_id):
+    """
+    View to unsave a post.
+    Redirects the user to the 'create_post' page after unsaving the post.
+    """
+    post = get_object_or_404(PostBlog, id=post_id)
+    
+    # Deleting the saved post from the user's saved posts
+    PostSave.objects.filter(user=request.user, post=post).delete()
+    
+    messages.success(request, 'Post unsaved successfully!')
+
+    return HttpResponseRedirect(reverse('create_post'))
