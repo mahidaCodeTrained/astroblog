@@ -100,21 +100,23 @@ def deletion(request, slug, comment_id):
     return HttpResponseRedirect(reverse('detailed_posts', args=[slug]))
 
 @login_required
+@login_required
 def create_post(request):
     """
-    View to create a new post.
+    View to create a new post with the option to choose draft or published.
     """
     if request.method == 'POST':
         form = PostForm(request.POST)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user  # Associate the post with the logged-in user
-
-            # Set default status to 'Published' or set a custom logic
-            post.status = 1  # Assuming '1' means published. Change as needed if it's another value for 'published'.
-            
             post.save()
-            messages.success(request, 'Your post has been created successfully!')
+
+            if post.status == 1:  # Published post
+                messages.success(request, 'Your post has been created and is now published!')
+            else:  # Draft post
+                messages.success(request, 'Your post has been created and saved as a draft!')
+
             return redirect('blog-home')  # Redirect to the blog home page or another page
         else:
             messages.error(request, 'There was an error creating your post.')
