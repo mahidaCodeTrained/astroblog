@@ -17,7 +17,8 @@
                 <p class="post-subtitle lead">{{ post.author }} | {{ post.created_on }}</p>
             </div>
             {% if user.is_authenticated and post.author == user %}
-            <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit this Post</a>
+            <a href="{% url 'edit_post' post.slug %}" class="btn btn-warning">Edit this Post</a>
+
             {% endif %}
         </div>
     </div>

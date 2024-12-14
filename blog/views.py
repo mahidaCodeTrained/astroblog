@@ -126,9 +126,8 @@ def create_post(request):
     return render(request, 'blog/create_post.html', {'form': form})
 
 @login_required
-def edit_post(request, post_id):
-  
-    post = get_object_or_404(PostBlog, id=post_id)
+def edit_post(request, slug):
+    post = get_object_or_404(PostBlog, slug=slug)
 
     # Ensure that only the author of the post can edit it
     if post.author != request.user:
