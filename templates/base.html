@@ -44,7 +44,8 @@
                     <!-- Additional links for authenticated users -->
                     {% if user.is_authenticated %}
                         <li class="nav-item">
-                            <a class="nav-link {% if request.path == '/observatory' %}active{% endif %}" aria-current="page" href="/observatory">Create Post</a>
+                            <a class="nav-link {% if request.path == '/create_post/' %}active{% endif %}" aria-current="page" href="{% url 'create_post' %}">Create Post</a>
+
                         </li>
                         <li class="nav-item">
                             <a class="nav-link {% if request.path == '/contact' %}active{% endif %}" aria-current="page" href="/contact">Contact</a>
