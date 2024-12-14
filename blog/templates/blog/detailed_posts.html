@@ -3,7 +3,6 @@
 {% load static %}
 
 {% block hero %} 
-
 {% endblock %}
 
 <div class="masthead position-relative">
@@ -28,6 +27,50 @@
             </div>
         </div>
     </div>
+
+    <!-- Displaying count of comments -->
+    <div class="row">
+        <div class="col-12">
+            <strong class="text-secondary">
+                <i class="far fa-comments"></i> {{ comment_count }}
+            </strong>
+        </div>
+        <div class="col-12">
+            <hr>
+        </div>
+    </div>
+
+    <!-- Displaying Comments -->
+    <div class="row">
+        <div class="col-12">
+            <div class="card mb-4 mt-3">
+                <div class="card-body">
+                    <h3>Comments:</h3>
+                    <!-- A for loop inside the empty control tags to iterate through each comment in comments -->
+                    {% for comment in comments %}
+                    <div class="p-3 mb-3 comments
+                        {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
+                        <p class="font-weight-bold">
+                            {{ comment.author }}
+                            <span class="font-weight-normal text-muted">
+                                {{ comment.created_on }}
+                            </span> wrote:
+                        </p>
+                        <div id="comment{{ comment.id }}" class="comment-body">
+                            {{ comment.body | linebreaks }}
+                        </div>
+                        {% if not comment.approved and comment.author == user %}
+                        <p class="approval text-warning">
+                            This comment is awaiting approval.
+                        </p>
+                        {% endif %}
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock content %}
+
