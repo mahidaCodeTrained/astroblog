@@ -101,6 +101,17 @@ h1 {
     color: black;
 }
 
+
+.note-editable {
+    max-height: 300px;
+    overflow-y: auto;
+}
+
+
+.note {
+    width: 100% !important;
+}
+
 @media screen and (min-width: 280px) {
 
 
@@ -114,5 +125,12 @@ h1 {
 
     .mobile-view {
         font-size: large;
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    .note-editor {
+        font-size: 14px;
     }
 }
