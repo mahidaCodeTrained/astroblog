@@ -1,13 +1,15 @@
 {% extends 'base.html' %}
-{% block content %}
 {% load static %}
+{% load crispy_forms_tags %}
 
-{% block hero %} 
+{% block hero %}
 {% endblock %}
 
+{% block content %}
 <div class="masthead position-relative">
     <div class="position-absolute top-0 w-100 h-100" style="background: rgba(0, 0, 0, 0.5); z-index: 1;"></div>
-    <img src="{% static 'images/starshoot.jpg' %}" class="w-100 h-100 object-fit-cover" alt="placeholder" style="z-index: 0; position: absolute;">
+    <img src="{% static 'images/starshoot.jpg' %}" class="w-100 h-100 object-fit-cover" alt="placeholder"
+        style="z-index: 0; position: absolute;">
     <div class="container text-center text-light position-relative" style="z-index: 2; padding: 100px 20px;">
         <h1 class="post-title display-4 underliner">{{ post.title }}</h1>
         <p class="post-subtitle lead">{{ post.author }} | {{ post.created_on }}</p>
@@ -31,7 +33,7 @@
     <!-- Displaying count of comments -->
     <div class="row">
         <div class="col-12">
-            <strong class="text-secondary">
+            <strong class="darken-strong">
                 <i class="far fa-comments"></i> {{ comment_count }}
             </strong>
         </div>
@@ -46,9 +48,9 @@
             <div class="card mb-4 mt-3">
                 <div class="card-body">
                     <h3>Comments:</h3>
-                    <!-- A for loop inside the empty control tags to iterate through each comment in comments -->
                     {% for comment in comments %}
-                    <div class="p-3 mb-3 comments
+                    <div
+                        class="p-3 mb-3 comments
                         {% if not comment.approved and comment.author == user %} faded{% elif not comment.approved %} d-none{% endif %}">
                         <p class="font-weight-bold">
                             {{ comment.author }}
@@ -60,17 +62,76 @@
                             {{ comment.body | linebreaks }}
                         </div>
                         {% if not comment.approved and comment.author == user %}
-                        <p class="approval text-warning">
-                            This comment is awaiting approval.
+                        <p class="approval warn">
+                            - This comment is awaiting approval.
                         </p>
+                        {% endif %}
+                        {% if user.is_authenticated and comment.author == user %}
+                        <button class="btn btn-delete delete"comment_id="{{ comment.id }}">Delete</button>
+                        <button class="btn btn-edit edit" comment_id="{{ comment.id }}">Edit</button>
                         {% endif %}
                     </div>
                     {% endfor %}
                 </div>
             </div>
+            <!-- Creating New Comments -->
+            <div class="col-md-8 offset-md-2 card mb-4 mt-3" id="comment-section">
+                <div class="card-body">
+                    {% if user.is_authenticated %}
+                    <h3 class="mb-4">Leave a Comment:</h3>
+                    <p class="text-muted">Posting as: <strong>{{ user }}</strong></p>
+                    <form id="commentForm" method="post" style="margin-top: 1.3em;">
+                        {% csrf_token %}
+
+                        <!-- Using Crispy form for better input styling -->
+                        <div class="form-group">
+                            {{ comment_form | crispy }}
+                        </div>
+
+                        <!-- Submit button with Bootstrap styling -->
+                        <button id="submitButton" type="submit" class="btn btn-primary btn-lg btn-block">
+                            Submit
+                        </button>
+                    </form>
+                    {% else %}
+                    <p class="text-center">Log in to leave a comment</p>
+                    {% endif %}
+                </div>
+            </div>
+
         </div>
     </div>
 </div>
 
+<!-- Delete confirmation modal -->
+<div class="modal fade" id="deleteModal" tabindex="-1"
+  aria-labelledby="deleteModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title"
+          id="deleteModalLabel">Delete comment?</h5>
+        <button type="button" class="btn-close"
+          data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Are you sure you want to delete your comment?
+        This action cannot be undone.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary"
+          data-bs-dismiss="modal">Close</button>
+        <a id="deleteConfirm" href="#" class="btn
+          btn-danger">Delete</a>
+      </div>
+    </div>
+  </div>
+</div>
+
 {% endblock content %}
+
+{% block extras %}
+<script src="{% static 'js/comments.js' %}"></script>
+{% endblock %}
+
 
