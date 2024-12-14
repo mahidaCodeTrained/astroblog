@@ -14,7 +14,7 @@
                         {% csrf_token %}
                         
                         <!-- Render the form using CrispyForms -->
-                        {{ form |crispy }}
+                        {{ form | crispy }}
 
                         <!-- Submit Button -->
                         <button type="submit" class="btn btn-success btn-block mt-3">Create Post</button>
@@ -38,4 +38,26 @@
     </div>
 </div>
 {% endblock %}
+
+{% block extras %}
+    <!-- Include Summernote CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.css" rel="stylesheet">
+
+    <!-- Include Summernote JS -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/summernote/0.8.18/summernote-lite.min.js"></script>
+
+    <script>
+        // Using JQuery in this html template to make sure that the editor functions well on all device sizes.
+        // Initialize Summernote for the content field
+        $(document).ready(function() {
+            $('#id_content').summernote({
+                height: 300,  // Customize the height of the editor
+                minHeight: 150,
+                maxHeight: 500,
+                focus: true,  // Automatically focus on the editor
+            });
+        });
+    </script>
+{% endblock %}
+
 
