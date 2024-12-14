@@ -11,8 +11,15 @@
     <img src="{% static 'images/starshoot.jpg' %}" class="w-100 h-100 object-fit-cover" alt="placeholder"
         style="z-index: 0; position: absolute;">
     <div class="container text-center text-light position-relative" style="z-index: 2; padding: 100px 20px;">
-        <h1 class="post-title display-4 underliner">{{ post.title }}</h1>
-        <p class="post-subtitle lead">{{ post.author }} | {{ post.created_on }}</p>
+        <div class="d-flex justify-content-between align-items-center">
+            <div>
+                <h1 class="post-title display-4 underliner">{{ post.title }}</h1>
+                <p class="post-subtitle lead">{{ post.author }} | {{ post.created_on }}</p>
+            </div>
+            {% if user.is_authenticated and post.author == user %}
+            <a href="{% url 'edit_post' post.id %}" class="btn btn-warning">Edit this Post</a>
+            {% endif %}
+        </div>
     </div>
 </div>
 
@@ -67,7 +74,7 @@
                         </p>
                         {% endif %}
                         {% if user.is_authenticated and comment.author == user %}
-                        <button class="btn btn-delete delete"comment_id="{{ comment.id }}">Delete</button>
+                        <button class="btn btn-delete delete" comment_id="{{ comment.id }}">Delete</button>
                         <button class="btn btn-edit edit" comment_id="{{ comment.id }}">Edit</button>
                         {% endif %}
                     </div>
@@ -133,5 +140,8 @@
 {% block extras %}
 <script src="{% static 'js/comments.js' %}"></script>
 {% endblock %}
+
+
+
 
 
