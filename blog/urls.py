@@ -4,7 +4,7 @@ from . import views
 urlpatterns = [
     path('', views.FetchBlog.as_view(), name='blog-home'),
     path('create_post/', views.create_post, name='create_post'),
-    path('post/edit/<int:post_id>/', views.edit_post, name='edit_post'),
+    path('post/edit/<slug:slug>/', views.edit_post, name='edit_post'),  # Editing post by slug
     path('<slug:slug>/', views.detailed_posts, name='detailed_posts'),
     path('<slug:slug>/edit_comment/<int:comment_id>',
          views.edits, name='edits'),
