@@ -99,7 +99,7 @@ def deletion(request, slug, comment_id):
 
     return HttpResponseRedirect(reverse('detailed_posts', args=[slug]))
 
-@login_required
+
 @login_required
 def create_post(request):
     """
@@ -125,6 +125,29 @@ def create_post(request):
 
     return render(request, 'blog/create_post.html', {'form': form})
 
+@login_required
+def edit_post(request, post_id):
+  
+    post = get_object_or_404(PostBlog, id=post_id)
+
+    # Ensure that only the author of the post can edit it
+    if post.author != request.user:
+        messages.error(request, "You are not authorized to edit this post.")
+        return redirect('blog-home')
+
+    # If the form is submitted (POST request)
+    if request.method == 'POST':
+        form = PostForm(request.POST, instance=post)
+        if form.is_valid():
+            form.save()  # Save the edited post
+            messages.success(request, "Your post has been updated successfully!")
+            return redirect('detailed_posts', slug=post.slug)  # Redirect to the post's detail page
+        else:
+            messages.error(request, "There was an error updating your post.")
+    else:
+        form = PostForm(instance=post)
+
+    return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
 
 
 
@@ -144,7 +167,6 @@ def save_post(request, post_id):
         messages.info(request, 'You have already saved this post.')
     
     return HttpResponseRedirect(reverse('create_post'))
-
 
 @login_required
 def unsave_post(request, post_id):
