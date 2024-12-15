@@ -17,10 +17,12 @@ class FetchBlog(generic.ListView):
 
 
 
+from django.http import Http404
+
 def detailed_posts(request, slug):
     """
     Display an individual :model:`blog.PostBlog`.
-
+    
     **Context**
 
     ``post``
@@ -30,11 +32,21 @@ def detailed_posts(request, slug):
 
     :template:`blog/detailed_posts.html`
     """
+    
+    # Fetch the post based on the slug (this ensures `post` is defined)
+    post = get_object_or_404(PostBlog, slug=slug)
 
-    queryset = PostBlog.objects.filter(status=1)
-    post = get_object_or_404(queryset, slug=slug)
+    # Check if the post is a draft and if the logged-in user is the author
+    if post.status == 0 and post.author != request.user:
+        # If the post is a draft and the logged-in user is not the author,
+        # return a 404 page.
+        raise Http404("Post not found.")
+
+    # Fetch comments for the post
     comments = post.comments.all().order_by("-created_on")
     comment_count = post.comments.filter(approved=True).count()
+
+    # Handle comment submission
     if request.method == "POST":
         comment_form = Commenting(data=request.POST)
         if comment_form.is_valid():
@@ -45,6 +57,21 @@ def detailed_posts(request, slug):
             messages.add_message(
                 request, messages.SUCCESS,
                 'Your comment has been submitted and is now waiting approval!'
+            )
+    
+    # Create a blank form to display for submitting a new comment
+    comment_form = Commenting()
+
+    # Render the detailed post page with the context
+    return render(
+        request,
+        "blog/detailed_posts.html",
+        {
+            "post": post,
+            "comments": comments,
+            "comment_count": comment_count,
+            "comment_form": comment_form,
+        },
     )
     
     comment_form = Commenting()

@@ -60,6 +60,7 @@ body {
 
 .card-body {
     background-color: lightgrey;
+    color: black;
 }
 
 .masthead-image img {

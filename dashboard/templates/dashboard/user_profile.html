@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1>Welcome to Your Profile, {{ user.username }}</h1>
+    <hr>
+    
+    <!-- Display User Posts -->
+    <h3>Your Posts</h3>
+    <div class="row">
+        {% for post in posts %}
+        <div class="col-lg-4 col-md-6 mb-4">
+            <div class="card">
+                
+                <div class="card-body">
+                    <h5 class="card-title">{{ post.title }}</h5>
+                    <p class="card-text">{{ post.content|truncatewords:20|safe }}</p> <!-- Apply |safe filter here -->
+                    <a href="{% url 'detailed_posts' post.slug %}" class="btn btn-primary">Read More</a>
+                    
+                    <!-- Display Post Status -->
+                    <p class="mt-2">
+                        <strong>Status:</strong> 
+                        {% if post.status == 1 %}
+                            Published
+                        {% else %}
+                            Draft
+                        {% endif %}
+                    </p>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>You have not posted any articles yet.</p>
+        {% endfor %}
+    </div>
+
+    <hr>
+
+    <!-- Display User Comments -->
+    <h3>Your Comments</h3>
+    <div class="row">
+        {% for comment in comments %}
+        <div class="col-12 mb-3">
+            <div class="card">
+                <div class="card-body">
+                    <p><strong>Post:</strong> <a href="{% url 'detailed_posts' comment.post.slug %}">{{ comment.post.title }}</a></p>
+                    <p><strong>Comment:</strong> {{ comment.body }}</p>
+                    <p><strong>Created On:</strong> {{ comment.created_on }}</p>
+                    <hr>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p>You have not commented on any posts yet.</p>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
