@@ -1,24 +1,29 @@
 {% extends 'base.html' %}
 {% block content %}
 {% load static %}
+
 <div class="container mt-5">
   <div class="row">
-    <div class="col-4 text-center">
-      <img src="{% static 'images/galaxy.jpg' %}" width="75%" />
+  
+    <div class="col-md-6 col-12 text-center">
+      <img src="{% static 'images/milkyway.jpg' %}" class="img-fluid mb-3" alt="Milky Way" />
+      <img src="{% static 'images/nightgalaxy.jpg' %}" class="img-fluid" alt="Night Galaxy" />
     </div>
-    <div class="col-8">
+    <div class="col-md-6 col-12">
       <!-- Title goes between these h2 tags -->
-      <h2>{{ about.title }}</h2>
+      <h2 class="h3-brightwhite">{{ about.title }}</h2>
       <!-- Content goes directly underneath this -->
       {{ about.content | safe }}
     </div>
   </div>
-  <div class="row">
-    <div class="col text-right">
-      <!-- Updated on field goes in here -->
 
+  <div class="row">
+    <div class="col text-end">
+      <!-- Updated on field goes in here -->
       <p class="text-end"><em>Updated on: {{ about.updated_on }}</em></p>
     </div>
   </div>
 </div>
+
 {% endblock content %}
+
