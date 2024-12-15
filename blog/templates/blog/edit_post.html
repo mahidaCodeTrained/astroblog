@@ -13,7 +13,7 @@
                 <h2 class="text-center mb-4">Edit Post</h2>
 
                 <!-- Form to Edit Post -->
-                <form method="POST">
+                <form method="POST" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="mb-3">
                         <!-- Render form fields using crispy -->

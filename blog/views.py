@@ -133,7 +133,7 @@ def create_post(request):
     View to create a new post with the option to choose draft or published.
     """
     if request.method == 'POST':
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.author = request.user  # Associate the post with the logged-in user
@@ -163,7 +163,7 @@ def edit_post(request, slug):
 
     # If the form is submitted (POST request)
     if request.method == 'POST':
-        form = PostForm(request.POST, instance=post)
+        form = PostForm(request.POST, request.FILES, instance=post)
         if form.is_valid():
             form.save()  # Save the edited post
             messages.success(request, "Your post has been updated successfully!")
