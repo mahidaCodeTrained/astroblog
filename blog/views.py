@@ -148,7 +148,25 @@ def edit_post(request, slug):
 
     return render(request, 'blog/edit_post.html', {'form': form, 'post': post})
 
+@login_required
+def delete_post(request, slug):
+    """
+    View to delete a post. Only the author can delete their own post.
+    """
+    # Get the post based on the slug
+    post = get_object_or_404(PostBlog, slug=slug)
 
+    # Check if the logged-in user is the author of the post
+    if post.author != request.user:
+        messages.error(request, "You are not authorized to delete this post.")
+        return redirect('blog-home')
+
+    # Delete the post
+    post.delete()
+    messages.success(request, "Your post has been deleted successfully!")
+    
+    # Redirect to the blog home or any other appropriate page
+    return redirect('blog-home')
 
 
 @login_required
