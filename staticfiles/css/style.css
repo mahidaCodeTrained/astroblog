@@ -113,6 +113,15 @@ h1 {
     width: 100% !important;
 }
 
+.page-link {
+    color: darkblue;
+}
+
+.h3-brightwhite {
+    color: white;
+    font-weight: bold;
+}
+
 @media screen and (min-width: 280px) {
 
 
