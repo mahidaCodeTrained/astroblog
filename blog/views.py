@@ -16,21 +16,14 @@ class FetchBlog(generic.ListView):
         return PostBlog.objects.filter(status=1)  # Show only published posts
 
 
-
-from django.http import Http404
-
 def detailed_posts(request, slug):
     """
     Display an individual :model:`blog.PostBlog`.
     
     **Context**
-
-    ``post``
-        An instance of :model:`blog.PostBlog`.
-
-    **Template:**
-
-    :template:`blog/detailed_posts.html`
+    ``post``: An instance of :model:`blog.PostBlog`.
+    
+    **Template:** :template:`blog/detailed_posts.html`
     """
     
     # Fetch the post based on the slug (this ensures `post` is defined)
@@ -38,8 +31,6 @@ def detailed_posts(request, slug):
 
     # Check if the post is a draft and if the logged-in user is the author
     if post.status == 0 and post.author != request.user:
-        # If the post is a draft and the logged-in user is not the author,
-        # return a 404 page.
         raise Http404("Post not found.")
 
     # Fetch comments for the post
@@ -48,19 +39,51 @@ def detailed_posts(request, slug):
 
     # Handle comment submission
     if request.method == "POST":
-        comment_form = Commenting(data=request.POST)
-        if comment_form.is_valid():
-            comment = comment_form.save(commit=False)
-            comment.author = request.user
-            comment.post = post
-            comment.save()
-            messages.add_message(
-                request, messages.SUCCESS,
-                'Your comment has been submitted and is now waiting approval!'
-            )
-    
-    # Create a blank form to display for submitting a new comment
-    comment_form = Commenting()
+        if request.user.is_authenticated:
+            comment_form = Commenting(data=request.POST)
+            if comment_form.is_valid():
+                comment = comment_form.save(commit=False)
+                comment.author = request.user
+                comment.post = post
+                comment.save()
+                messages.add_message(
+                    request, messages.SUCCESS,
+                    'Your comment has been submitted and is now waiting approval!'
+                )
+        else:
+            messages.warning(request, "You must be logged in to comment.")
+            return redirect('login')  # Redirect unauthenticated users to the login page
+    else:
+        comment_form = Commenting()
+
+    # Check if the user has already saved the post
+    is_saved = PostSave.objects.filter(user=request.user, post=post).exists() if request.user.is_authenticated else False
+
+    # Handle saving the post
+    if request.method == "POST":
+        if 'save_post' in request.POST:
+            if request.user.is_authenticated:
+                saved_post, created = PostSave.objects.get_or_create(user=request.user, post=post)
+                if created:
+                    messages.success(request, 'Post saved successfully!')
+                else:
+                    messages.info(request, 'You have already saved this post.')
+            else:
+                messages.warning(request, "You must be logged in to save a post.")
+                return redirect('login')  # Redirect unauthenticated users to the login page
+            
+            return redirect('detailed_posts', slug=slug)  # Redirect back to the same post page
+
+        # Handle unsaving the post
+        elif 'unsave_post' in request.POST:
+            if request.user.is_authenticated:
+                PostSave.objects.filter(user=request.user, post=post).delete()
+                messages.success(request, 'Post unsaved successfully!')
+            else:
+                messages.warning(request, "You must be logged in to unsave a post.")
+                return redirect('login')  # Redirect unauthenticated users to the login page
+            
+            return redirect('detailed_posts', slug=slug)
 
     # Render the detailed post page with the context
     return render(
@@ -71,21 +94,10 @@ def detailed_posts(request, slug):
             "comments": comments,
             "comment_count": comment_count,
             "comment_form": comment_form,
+            "is_saved": is_saved,  # Add this to check if the post is saved
         },
     )
-    
-    comment_form = Commenting()
 
-    return render(
-    request,
-    "blog/detailed_posts.html",
-    {
-        "post": post,
-        "comments": comments,
-        "comment_count": comment_count,
-        "comment_form": comment_form,
-    },
-)
 
 def edits(request, slug, comment_id):
     """
@@ -197,12 +209,12 @@ def delete_post(request, slug):
 
 
 @login_required
-def save_post(request, post_id):
+def save_post(request, slug):
     """
     View to save a post.
-    Redirects the user to the 'create_post' page after saving the post.
+    Redirects the user to their profile page after saving the post.
     """
-    post = get_object_or_404(PostBlog, id=post_id)
+    post = get_object_or_404(PostBlog, slug=slug)
     saved_post, created = PostSave.objects.get_or_create(user=request.user, post=post)
     
     if created:
@@ -210,19 +222,19 @@ def save_post(request, post_id):
     else:
         messages.info(request, 'You have already saved this post.')
     
-    return HttpResponseRedirect(reverse('create_post'))
+    return HttpResponseRedirect(reverse('user_profile'))  # Redirect to profile page
 
 @login_required
-def unsave_post(request, post_id):
+def unsave_post(request, slug):
     """
     View to unsave a post.
-    Redirects the user to the 'create_post' page after unsaving the post.
+    Redirects the user to their profile page after unsaving the post.
     """
-    post = get_object_or_404(PostBlog, id=post_id)
+    post = get_object_or_404(PostBlog, slug=slug)
     
     # Deleting the saved post from the user's saved posts
     PostSave.objects.filter(user=request.user, post=post).delete()
     
     messages.success(request, 'Post unsaved successfully!')
 
-    return HttpResponseRedirect(reverse('create_post'))
+    return HttpResponseRedirect(reverse('user_profile'))  # Redirect to profile page
