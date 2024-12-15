@@ -66,7 +66,7 @@
     <hr>
 
     <!--  This Will Display Saved Posts -->
-    <h3>Your Saved Posts</h3>
+    <h3>Your Favourite Posts in Astroblog!</h3>
     <div class="row">
         {% for post in saved_posts %}
         <div class="col-lg-4 col-md-6 mb-4">
@@ -87,13 +87,13 @@
                     <!-- Button to unsave the post -->
                     <form action="{% url 'unsave_post' post.slug %}" method="POST">
                         {% csrf_token %}
-                        <button type="submit" class="btn btn-danger mt-2">Unsave Post</button>
+                        <button type="submit" class="btn btn-danger mt-2">Unfavourite Post</button>
                     </form>
                 </div>
             </div>
         </div>
         {% empty %}
-        <p>You have not saved any posts yet.</p>
+        <p>You have not favourited any posts yet.</p>
         {% endfor %}
     </div>
 </div>
