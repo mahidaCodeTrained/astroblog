@@ -108,11 +108,14 @@ I used the website [coolers.co](https://coolors.co/) to generate my color pallet
 - The wireframes for my edit and create posts are essentially the same as they were intended to use the same form. Therefore, the mockups for the wireframes will show the home page, the about page, the create post form and the user profile page.
 - The pages for sign in and sign up were not included in my original mockup wireframes as they were set to be extremely basic and centered as they are in the site.
 
-Home | ![Desktop Home Image](assets/readmefiles/images/homewireframe.jpg) | ![Mobile Home Image](assets/readmefiles/images/homemobilewireframe.jpg)
-About | ![Desktop About Image](assets/readmefiles/images/aboutwireframe.jpg)  | ![Mobile About Image](assets/readmefiles/images/aboutmobilewireframe.jpg)
-My Profile | ![Desktop Profile Image](assets/readmefiles/images/profiledesktop.jpg) | ![Mobile Profile Image](assets/readmefiles/images/profilemobile.jpg)
-Blog View | ![Desktop Blog View Image](assets/readmefiles/images/detailpostwireframe.jpg) | ![Mobile Blog View Image](assets/readmefiles/images/mobileblogpostwireframe.jpg)
-Create Post | ![Desktop Create Post Image](assets/readmefiles/images/createpostdesktop.jpg) | ![Mobile Create Post Image](assets/readmefiles/images/mobileformwireframe.jpg)
+| Page         | Desktop View Image                                             | Mobile View Image                                              |
+|--------------|----------------------------------------------------------------|---------------------------------------------------------------|
+| Home         | ![Desktop Home Image](assets/readmefiles/images/homewireframe.jpg) | ![Mobile Home Image](assets/readmefiles/images/homemobilewireframe.jpg) |
+| About        | ![Desktop About Image](assets/readmefiles/images/aboutwireframe.jpg) | ![Mobile About Image](assets/readmefiles/images/aboutmobilewireframe.jpg) |
+| My Profile   | ![Desktop Profile Image](assets/readmefiles/images/profiledesktop.jpg) | ![Mobile Profile Image](assets/readmefiles/images/profilemobile.jpg) |
+| Blog View    | ![Desktop Blog View Image](assets/readmefiles/images/detailpostwireframe.jpg) | ![Mobile Blog View Image](assets/readmefiles/images/mobileblogpostwireframe.jpg) |
+| Create Post  | ![Desktop Create Post Image](assets/readmefiles/images/createpostdesktop.jpg) | ![Mobile Create Post Image](assets/readmefiles/images/mobileformwireframe.jpg) |
+
 
 - These were the initial wireframes created for the project. The edit blog is not shown because it is the same as the create post form. 
 
