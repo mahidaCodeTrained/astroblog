@@ -137,7 +137,7 @@ I used the website [coolers.co](https://coolors.co/) to generate my color pallet
 | **Edit/Delete Post** | ![screenshot](assets/readmefiles/features/editdeletefunction.jpg) | There is a edit and delete post button that allows users to delete or edit their own posts only. |
 | **Upload Image** | ![screenshot](assets/readmefiles/features/imagepostfeature.jpg) | This allows users to post images on their blog post that are seen in the home screen as the posts banner of sorts. |
 | **Comment History** | ![screenshot](assets/readmefiles/features/commenthistoryfeature.jpg) | This highlights your own comments if you are signed in as a user. It tells you the post and the date and time of the comment + the actual comment itself |
-| **Favourite Buttons/Unfavourite Buttons** | ![screenshot](assets/readmefiles/features/favourite%20feature.png) ![screenshot](assets/readmefiles/features/unfavouritefeature.jpg) | This final menu is brought up when the user completes the questions in the survey. The menu is personalized showing the user's name and what survey they have taken. The book survey additionally shows that they have taken the book survey. |
+| **Favourite Buttons/Unfavourite Buttons** | ![screenshot](assets/readmefiles/features/favourite%20feature.png) ![screenshot](assets/readmefiles/features/unfavouritefeature.jpg) | These buttons are features that allow users to favourite their posts and then unfavourite their posts only in the profile. |
 | **Create Post** | ![screenshot](assets/readmefiles/features/createpostfeature.jpg) | The users can create posts and it shows the entire form that can be completed and a button at the end to send. |
 | **Delete Confirm** | ![screenshot](assets/readmefiles/features/deleteconfirmfeature.jpg) ![screenshot](assets/readmefiles/features/updatepostconfrimfeature.jpg) | There is a alert when you have edited or deleted a post and it comes up right on the home screen underneath the navbar for the user. |
 | **Posts Confirmation** | ![screenshot](assets/readmefiles/features/publishedpostfeature.jpg) ![screenshot](assets/readmefiles/features/draftconfirmfeature.jpg) | This alert shows that posts are either published or saved as drafts for the user |
@@ -197,7 +197,7 @@ I used the website [coolers.co](https://coolors.co/) to generate my color pallet
 
 ## Tools & Technologies 
 - This is the tools and technologies used in this project. 
-- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) this language was used as the forefront of the project with all the code in the run.py file being Python.
+- [Python](https://en.wikipedia.org/wiki/Python_(programming_language)) this language was used as the forefront of the project with django.
 - [CSS](https://en.wikipedia.org/wiki/CSS) was used to style html elements in the page.
 - [JavaScript](https://en.wikipedia.org/wiki/JavaScript) was used to add functionality to certain elements with the use of ids.
 - [Django](https://www.djangoproject.com/) Django framework used to create the app and project.
@@ -288,4 +288,3 @@ Deployment to [Heroku](https://www.heroku.com) was completed using the following
 ##  Acknowledgements
 - I would like to thank my friends and family for supporting me on this journey at Code Institute. 
 - I would like to thank my Code Institute mentor Sheryl Goldberg who has helped me and has given me alot of support!
-- I would like to give a thanks to the Tutor Support team at Code Institute. We spent alot of minutes even hours trying to solve errors and bugs within the code. The code was extensive and very long for a project 3. Almost everytime the teama at Tutor Support couldn't solve or help me but you gave me the best motivation by stating that "Remember, you know your code better than anybody and what you would like to do with it so I'm sure you will find a fix to your issues". This quote helped me greatly and picked me up when I was struggling and stressing. Once again a big thank you to all these people. 
