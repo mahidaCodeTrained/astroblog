@@ -24,6 +24,40 @@ Return to the [README.md](README.md) file.
 ## Validation 
 - This will show that the code is completely validated and correctly placed.
 
+### HTML
+
+| Page | URL | Screenshot | Notes |
+| :---: | :---: | :---: | :---: |
+| home | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/homevalidator.jpg) | Passed all checks |
+| createpost | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/createpostvalidation.jpg) | Passed all checks |
+| editpost | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/editvalidation.jpg) | Passed all checks |
+| detailed posts | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/detailedpostvalidator.jpg) | Passed all checks |
+| profile | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/profilevalidation.jpg) | Passed all checks |
+| sign in | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/signinvalidation.jpg) | Passed all checks |
+| sign out | [W3C](https://validator.w3.org/) | ![screenshot](assets/readmefiles/validation/signoutvalidation.jpg) | Passed all checks |
+
+- The about page uses crispyform styling from the django admin to create the page and it makes its own tags like font which wasnt compatible with W3C. The site works perfectly and it looks perfect.
+
+### CSS
+
+| Page | Jigsaw URL | Screenshot | Notes |
+| :---: | :---: | :---: | :---: |
+| style.css | [Jigsaw](https://jigsaw.w3.org/css-validator/validator) | ![screenshot](assets/readmefiles/validation/cssvalidator.jpg) | Passed all checks |
+
+
+### JavaScript
+
+| Page | JS Hint URL | Screenshot | Notes |
+| :---: | :---: | :---: | :---: |
+| script.js | [JS Hint](https://jshint.com/) | ![screenshot](documentation/testing/javascriptvalidator.png) | This has passed all checks, the two unused functions that can be seen stated are not an error in the JS code. It is simply because those functions are not being called upon at the current moment. |
+
+
+
+### Python
+
+| File | URL | Screenshot | Notes |
+| :---: | :---: | :---: | :---: |
+|  | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](documentation/testing/pythonlinter-success.png) | Passed all checks |
 
 ## Lighthouse
 - This is the lighthouse testing section for all of the pages. 
