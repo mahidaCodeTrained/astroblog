@@ -7,7 +7,7 @@ const submitButton = document.getElementById("submitButton");
 const commentSection = document.getElementById("comment-section"); // Ensure this ID matches your "Leave a comment" section.
 
 // Modal related to delete
-const deleteModal = (document.getElementById("deleteModal"));
+const deleteModal = new bootstrap.Modal(document.getElementById("deleteModal"));
 const deleteButtons = document.getElementsByClassName("btn-delete");
 const deleteConfirm = document.getElementById("deleteConfirm");
 const closeModalButton = document.querySelector("#deleteModal .btn-close"); // Selecting the close button inside the modal
