@@ -10,11 +10,10 @@ class FetchBlog(generic.ListView):
     model = PostBlog
     template_name = "blog/index.html"
     paginate_by = 6
-
+    
     def get_queryset(self):
-        # Filter to show only published posts and order by newest first
-        return PostBlog.objects.filter(status=1).order_by('-created_on')
-
+        # Filter to show only published posts
+        return PostBlog.objects.filter(status=1)  # Show only published posts
 
 
 def detailed_posts(request, slug):

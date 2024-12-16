@@ -6,7 +6,7 @@ STATUS = ((0, "Draft"), (1, "Published"))
 # Create your models here.
 
 class PostBlog(models.Model):
-    # This is a model that will collect the blogpost. It will create a table in the database with the fields added below.
+
     title = models.CharField(max_length=200, unique=True)
     slug = models.SlugField(max_length=200, unique=True)
     author = models.ForeignKey(

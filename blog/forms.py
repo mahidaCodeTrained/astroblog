@@ -5,7 +5,8 @@ from .models import PostBlog, Comment
 class PostForm(forms.ModelForm):
     class Meta:
         model = PostBlog
-        fields = ['title', 'slug', 'content', 'featured_image', 'excerpt', 'status']
+        fields = [
+            'title', 'slug', 'content', 'featured_image', 'excerpt', 'status']
 
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)

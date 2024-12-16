@@ -49,7 +49,7 @@ Return to the [README.md](README.md) file.
 
 | Page | JS Hint URL | Screenshot | Notes |
 | :---: | :---: | :---: | :---: |
-| script.js | [JS Hint](https://jshint.com/) | ![screenshot](documentation/testing/javascriptvalidator.png) | This has passed all checks, the two unused functions that can be seen stated are not an error in the JS code. It is simply because those functions are not being called upon at the current moment. |
+| comments.js | [JS Hint](https://jshint.com/) | ![screenshot](assets/readmefiles/validation/jshintvalidaton.jpg) | Passed all checks |
 
 
 
@@ -57,7 +57,14 @@ Return to the [README.md](README.md) file.
 
 | File | URL | Screenshot | Notes |
 | :---: | :---: | :---: | :---: |
-|  | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](documentation/testing/pythonlinter-success.png) | Passed all checks |
+| about/admin.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutadminspy.jpg) | Passed all checks |
+| about/urls.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/abouturls.jpg) | Passed all checks |
+| about/models.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutmodelspy.jpg) | Passed all checks |
+| about/views.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutviewspy.jpg) | Passed all checks |
+| blog/admin.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutviewspy.jpg) | Passed all checks |
+| blog/urls.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutviewspy.jpg) | Passed all checks |
+| blog/models.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutviewspy.jpg) | Passed all checks |
+| blog/views.py | [CI Python Linter](https://pep8ci.herokuapp.com/#) | ![screenshot](assets/readmefiles/validation/aboutviewspy.jpg) | Passed all checks |
 
 ## Lighthouse
 - This is the lighthouse testing section for all of the pages. 

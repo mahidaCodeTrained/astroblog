@@ -14,4 +14,3 @@ urlpatterns = [
     path('<slug:slug>/delete/', views.delete_post, name='delete_post'),
 ]
 
-
