@@ -96,8 +96,6 @@ Content Management (logged-in users only)
 
 - There were other colors used such as blue for the paginator next and previous buttons and for submitting forms however this color didnt have much of a mockup before the projects development they were added in not for any stylistic reasons.
 I used the website [coolers.co](https://coolors.co/) to generate my color pallete for this project.
-<details>
-<summary>Click this for a Coolers screenshot</summary>
   
 ![screenshot](assets/readmefiles/images/coolers.jpg)
 
