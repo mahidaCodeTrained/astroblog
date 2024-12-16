@@ -1,4 +1,5 @@
 # Astroblog
+![screenshot](assets/readmefiles/images/astroblog.jpg)
 
 This highly detailed functioning site is called Astroblog. Astroblog is a django project that truly encapsulates the strengths of the framework. It is an extensive project built for enthusiansts of space and astronomy. Astroblog as the name suggests is a blog there are many highly detailed posts bringing light towards certain theories, events, own recolletions and experiences of many users. The site is designed to allow users to register with Astroblog and take part in the discussions with complete CRUD functionality through leaving comments and posts on the blog whilst also being able to edit or delete them if that is their wish. Throughout this file, you will see just how the Astroblog project came to it's inception and the stages it went through from the initial mockups all the way to the release. 
 
